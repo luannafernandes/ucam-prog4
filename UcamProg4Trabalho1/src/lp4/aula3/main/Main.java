@@ -15,6 +15,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		System.out.print("Iniciando ...");
+		
 		Ator ator = new Ator();
 		ator.setNome( NOME );
 		ator.setSobrenome( SOBRENOME );
