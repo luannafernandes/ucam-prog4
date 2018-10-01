@@ -1,19 +1,15 @@
 package br.edu.ucam.model.dao;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 
 import br.edu.ucam.model.entities.BusinessEntity;
 import br.edu.ucam.model.entities.Person;
-import br.edu.ucam.model.util.ConnectionFactory;
 
-public class PersonDAO {
+public class PersonDAO extends BaseDAO{
 
-	private Connection con;
-	private Statement comando;
+	
 	
 	public Vector<Person> buscarPorNomeESobrenome(String nome, String sobrenome) {
 		conectar();
@@ -73,34 +69,6 @@ public class PersonDAO {
 			imprimeErro("Erro ao buscar pessoas", e);
 			return null;
 		}
-	}
-
-	private void conectar() {
-		try {
-			con = ConnectionFactory.conexao();
-			comando = con.createStatement();
-			System.out.println("Conectado!");
-		} catch (SQLException e) {
-			imprimeErro("Erro ao conectar", e);
-		}
-	}
-
-	private void fechar() {
-		try {
-			comando.close();
-			con.close();
-			System.out.println("Conexao Fechada");
-		} catch (SQLException e) {
-			imprimeErro("Erro ao fechar conexao", e);
-		}
-	}
-
-	private void imprimeErro(String msg, Throwable e) {
-		// JOptionPane.showMessageDialog(null, msg, "Erro cr�tico", 0);
-		System.err.println(msg + " " + e.getMessage());
-		e.printStackTrace();
-		// System.out.println(msgErro);
-		// System.exit(0);
 	}
 
 	public void insere(Person person) {
